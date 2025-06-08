@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheryl GI - ML Engineer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* New Color Palette based on design mockup (image_1864ce.png)
+            --color-background-light: Overall page background, light grey.
+            --color-container-white: Main content container background, pure white.
+            --color-header-bg: Pastel light teal/blue for header background.
+            --color-dark-teal: Deep desaturated teal for headings, primary buttons, logo, ring.
+            --color-light-blue-accent: Lighter blue for section titles, card accents (retained from previous for contrast).
+            --color-text-dark: Dark grey for general body text.
+            --color-text-light: Slightly lighter grey for secondary text.
+            --color-border-light: Light grey borders/dividers.
+            --color-button-hover-orange: Soft orange for hover effect.
+        */
+        :root {
+            --color-background-light: #FDF5E6; /* Very light, warm off-white (Old Lace) */
+            --color-container-white: #FFFFFF; /* Keeping white for cleanliness and contrast */
+            --color-header-bg: #EEDCCB; /* Soft, light tan/beige */
+            --color-dark-teal: #5C4033; /* Deep, rich espresso brown (primary dark color) */
+            --color-light-blue-accent: #CC9966; /* Light caramel/tan for accent */
+            --color-text-dark: #4A3C32; /* Dark brown for main text */
+            --color-text-light: #7A6C60; /* Medium brown for secondary text */
+            --color-border-light: #E8E2DA; /* Very light, subtle beige/brown for borders */
+            --color-button-hover-orange: #D2691E; /* Chocolate for a warm, slightly reddish-brown hover */
+        }
+
+        /* General Body and Container Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-background-light);
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 30px auto;
+            padding: 0 30px;
+            background-color: var(--color-container-white);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+        }
+
+        /* Top Navbar (similar to the image, minimal) */
+        .top-navbar {
+            background-color: var(--color-container-white);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+        }
+
+        .top-navbar .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5em;
+            color: var(--color-dark-teal);
+            text-decoration: none;
+        }
+
+        .top-navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 25px;
+        }
+
+        .top-navbar ul li a {
+            color: var(--color-text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .top-navbar ul li a:hover {
+            color: var(--color-dark-teal);
+        }
+
+        .top-navbar .btn-contact {
+            background-color: var(--color-dark-teal);
+            color: var(--color-container-white);
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .top-navbar .btn-contact:hover {
+            background-color: var(--color-button-hover-orange); /* Brown hover */
+            transform: translateY(-2px);
+        }
+
+        /* Header Section - Split Layout */
+        .header {
+            background-color: var(--color-header-bg); /* Soft light brown/tan */
+            padding: 80px 0;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+            border-radius: 0 0 12px 12px;
+            position: relative;
+            overflow: hidden;
+            display: flex; /* Use flexbox for split layout */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header::before, .header::after {
+            content: '';
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.1); /* White translucent */
+            border-radius: 50%;
+            filter: blur(50px); /* Soft blur effect */
+            z-index: 0;
+        }
+
+        .header::before {
+            width: 250px;
+            height: 250px;
+            top: -50px;
+            left: -50px;
+        }
+
+        .header::after {
+            width: 350px;
+            height: 350px;
+            bottom: -100px;
+            right: -100px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Organic shape */
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1050px;
+            width: 100%;
+            padding: 0 30px;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .hero-text-section {
+            flex: 1; /* Takes available space */
+            min-width: 300px; /* Minimum width before wrapping */
+            text-align: left;
+            padding-right: 40px; /* Space between text and image */
+        }
+
+        .hero-text-section h1 {
+            font-size: 4.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: var(--color-dark-teal);
+            line-height: 1.1;
+        }
+
+        .hero-text-section .role {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: var(--color-text-dark);
+            font-weight: 300;
+        }
+
+        .hero-text-section p {
+            font-size: 1.1em;
+            color: var(--color-text-light);
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .cta-buttons .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .cta-buttons .btn-primary {
+            background-color: var(--color-dark-teal);
+            color: var(--color-container-white);
+        }
+
+        .cta-buttons .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .cta-buttons .btn-secondary {
+            background-color: var(--color-container-white);
+            color: var(--color-dark-teal);
+            border: 2px solid var(--color-dark-teal);
+        }
+
+        .cta-buttons .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            background-color: var(--color-background-light); /* Very light brown */
+        }
+
+        .profile-image-section {
+            flex: 0 0 auto; /* Don't grow or shrink, take content width */
+            padding-left: 40px; /* Space between text and image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-photo-circular {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 10px solid var(--color-container-white); /* White border for the inner circle */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 2; /* Ensure it's above the brown ring */
+        }
+
+        .profile-photo-circular img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Brown Ring behind profile photo */
+        .profile-photo-ring {
+            position: absolute;
+            width: 330px; /* Slightly larger than photo */
+            height: 330px;
+            border-radius: 50%;
+            background-color: var(--color-dark-teal); /* Darker Brown */
+            z-index: 1;
+            transform: translate(15px, 15px); /* Offset slightly */
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 70px 0;
+            border-bottom: 1px solid var(--color-border-light);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 3em;
+            color: var(--color-dark-teal);
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            animation: slideInDown 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideInDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 5px;
+            background-color: var(--color-light-blue-accent);
+            margin: 15px auto 0;
+            border-radius: 3px;
+        }
+
+        /* Card Style for Projects, Internship, Certs, Research */
+        .card {
+            background-color: var(--color-container-white);
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            margin-bottom: 35px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--color-border-light);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--color-light-blue-accent), var(--color-dark-teal));
+            border-radius: 12px 12px 0 0;
+        }
+
+        .card h3 {
+            color: var(--color-dark-teal);
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            position: relative;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed var(--color-border-light);
+        }
+
+        .card h3 a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        .card h3 a:hover {
+            color: var(--color-light-blue-accent);
+        }
+
+        .card ul {
+            list-style: disc;
+            margin-left: 25px;
+            padding: 0;
+            color: var(--color-text-dark);
+        }
+
+        .card ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Education Section Specific */
+        .education-item {
+            margin-bottom: 30px;
+            padding-left: 25px;
+            border-left: 5px solid var(--color-light-blue-accent);
+            animation: slideInLeft 0.7s ease-out forwards;
+            opacity: 0;
+        }
+
+        .education-item:nth-child(even) {
+            border-left-color: var(--color-dark-teal);
+            animation: slideInRight 0.7s ease-out forwards;
+            opacity: 0;
+        }
+
+        .education-item h3 {
+            margin-bottom: 8px;
+            color: var(--color-dark-teal);
+            font-size: 1.7em;
+        }
+        .education-item p {
+            color: var(--color-text-light);
+            font-size: 1em;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+
+        .skill-category {
+            background-color: var(--color-container-white);
+            border-radius: 12px;
+            box-shadow: 0 3px 9px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            border: 1px solid var(--color-border-light);
+        }
+
+        .skill-category h3 {
+            color: var(--color-dark-teal);
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.6em;
+            border-bottom: 2px solid var(--color-border-light);
+            padding-bottom: 10px;
+        }
+
+        .skill-category ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .skill-category ul li {
+            background-color: var(--color-header-bg); /* Use the lighter brown for skill tags */
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin: 10px 8px;
+            display: inline-block;
+            font-size: 0.95em;
+            color: var(--color-text-dark);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .skill-category ul li:hover {
+            background-color: var(--color-light-blue-accent); /* Slightly darker brown on hover */
+            transform: scale(1.05);
+        }
+
+        /* Internship, Certifications, Research, Workshops, Languages */
+        .internship-item, .certification-item, .research-item, .workshop-item {
+            margin-bottom: 35px;
+            animation: fadeIn 0.7s ease-out forwards;
+            opacity: 0;
+        }
+
+        .languages ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .languages ul li {
+            background-color: #EEDCCB; /* Light tan/beige */
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            color: #5C4033; /* Espresso brown */
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .languages ul li:hover {
+            background-color: #CC9966; /* Darker tan on hover */
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--color-dark-teal);
+            color: var(--color-container-white);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.08);
+            font-size: 0.9em;
+        }
+
+        .footer a {
+            color: var(--color-light-blue-accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--color-container-white);
+        }
+
+        /* --- Keyframe Animations --- */
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* --- Media Queries for Responsiveness --- */
+        @media (max-width: 960px) {
+            .container {
+                padding: 0 20px;
+                margin: 20px auto;
+            }
+            .hero-text-section h1 {
+                font-size: 3.5em;
+            }
+            .hero-text-section .role {
+                font-size: 1.5em;
+            }
+            .profile-photo-circular {
+                width: 250px;
+                height: 250px;
+            }
+            .profile-photo-ring {
+                width: 280px;
+                height: 280px;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-navbar {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .top-navbar ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                padding: 0 20px;
+            }
+            .hero-text-section {
+                padding-right: 0;
+                padding-bottom: 40px;
+            }
+            .hero-text-section h1 {
+                font-size: 3em;
+            }
+            .hero-text-section .role {
+                font-size: 1.3em;
+            }
+            .profile-image-section {
+                padding-left: 0;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .section {
+                padding: 50px 0;
+            }
+            .section-title {
+                font-size: 2.3em;
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text-section h1 {
+                font-size: 2.5em;
+            }
+            .hero-text-section .role {
+                font-size: 1.1em;
+            }
+            .profile-photo-circular {
+                width: 200px;
+                height: 200px;
+            }
+            .profile-photo-ring {
+                width: 220px;
+                height: 220px;
+            }
+            .section-title {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+            .card {
+                padding: 20px;
+                margin-bottom: 25px;
+            }
+            .card h3 {
+                font-size: 1.5em;
+                margin-bottom: 15px;
+            }
+            .skill-category {
+                padding: 20px;
+            }
+            .skill-category h3 {
+                font-size: 1.4em;
+                margin-bottom: 15px;
+            }
+            .skill-category ul li {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+            .languages ul li {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-navbar">
+        <a href="#" class="logo"></a> <ul>
+            <li><a href="#" class ="btn-contact">Home</a></li>
+            <li><a href="#summary" class="btn-contact">Summary</a></li>
+            <li><a href="#education" class="btn-contact">Education</a></li>
+            <li><a href="#skills" class="btn-contact">Skills</a></li>
+            <li><a href="#projects" class="btn-contact">Projects</a></li>
+            <li><a href="#internship" class="btn-contact">Internship</a></li>
+            <li><a href="#certifications" class="btn-contact">Certifications</a></li>
+            <li><a href="#research" class="btn-contact">Research</a></li>
+            <li><a href="#contact" class="btn-contact">Contact</a></li>
+        </ul>
+        
+    </nav>
+
+    <header class="header">
+        <section id ="xyz">
+        <div  class="header-content">
+            <div class="hero-text-section">
+                <h1>Hi, I'm Sheryl GI.</h1>
+                <p class="role">ML Engineer</p>
+                <p>Passionate about building intelligent systems and solving real-world problems with machine learning and data-driven insights.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">LEARN MORE</a>
+                    <a href="#contact" class="btn btn-secondary">HIRE ME</a>
+                </div>
+            </div>
+            <div class="profile-image-section">
+                <div class="profile-photo-ring"></div>
+                <div class="profile-photo-circular">
+                    <img src="C:\Users\gades\Downloads\1000102158.jpg" alt="Sheryl GI Profile Photo">
+                </div>
+            </div>
+        </div>
+    </section>
+    </header>
+
+    <main class="container">
+
+        <section id="summary" class="section is-visible">
+            <h2 class="section-title">Summary</h2>
+            <p>To find a challenging opportunity as Machine Learning Engineer that allows me to apply my technical skills and analytical skills to solve real world problems, contributing to the growth of the organization while fostering my own professional development.</p>
+        </section>
+
+        <section id="education" class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="education-item">
+                <h3>M. Sc Information Technology</h3>
+                <p>Stella Maris College, Chennai <br> 2023-2025</p>
+            </div>
+            <div class="education-item">
+                <h3>BCA</h3>
+                <p>Stella Maris College, Chennai <br> 2020-2023</p>
+            </div>
+            <div class="education-item">
+                <h3>HSC</h3>
+                <p>Little Jacky Matric Hr Sec School <br> 2020</p>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Technical Skills</h3>
+                    <ul>
+                        <li>Programming Languages: Python, Java, JavaScript</li>
+                        <li>Databases: PostgreSQL, MySQL</li>
+                        <li>Libraries/Frameworks: React, SciPy, Flask</li>
+                        <li>Cloud: AWS</li>
+                        <li>Data Visualization: PowerBI</li>
+                        <li>Other: HTML, CSS, XML</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>AI Skills</h3>
+                    <ul>
+                        <li>Deep Learning</li>
+                        <li>Machine Learning</li>
+                        <li>Data Cleaning</li>
+                        <li>Data Visualization</li>
+                        <li>Data Preprocessing</li>
+                        <li>Model Building</li>
+                        <li>Natural Language Processing</li>
+                        <li>LLM</li>
+                        <li>Computer Vision</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Soft Skills</h3>
+                    <ul>
+                        <li>Problem Solving</li>
+                        <li>Team Management</li>
+                        <li>Active Listening</li>
+                        <li>Communication</li>
+                        <li>Leadership</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <h2 class="section-title">Projects</h2>
+
+            <div class="project-item card animate-slide-in-left">
+                <h3><a href="https://github.com/Sherylproject/Automated-image-caption-with-audio" target="_blank">Automated Image Caption Generator with Audio</a></h3>
+                <ul>
+                    <li>Developed a CNN model using the Flickr8K dataset to generate contextual image descriptions, demonstrating machine learning skills.</li>
+                    <li>Integrated text-to-speech (TTS) using Python's gTTS library for real-time audio output.</li>
+                    <li>Designed and deployed a Flask web interface for user uploads, showcasing web development and deployment abilities.</li>
+                    <li>Focused on accessibility by combining visual and auditory outputs for visually impaired users.</li>
+                </ul>
+            </div>
+
+            <div class="project-item card animate-slide-in-right">
+                <h3>Impact of Social Media Influencers on Consumer Purchasing Behaviour Analysis</h3>
+                <ul>
+                    <li>Analyzed the correlation between social media influencer engagement and consumer purchasing decisions.</li>
+                    <li>Utilized data analysis techniques, including data loading, cleaning, and visualization using libraries like Pandas, NumPy, Matplotlib, and Seaborn.</li>
+                    <li>Implemented machine learning models, such as Random Forest Classifier, and evaluated their and evaluated their performance using confusion matrices to predict consumer behavior.</li>
+                    <li>This project demonstrates proficiency in data manipulation, exploratory data analysis, and predictive modeling for business insights.</li>
+                </ul>
+            </div>
+
+            <div class="project-item card animate-slide-in-left">
+                <h3>Baby Care and Products Website</h3>
+                <ul>
+                    <li>Designed and developed a full-fledged website on baby care and products using PHP, HTML, CSS, JavaScript, and SQL.</li>
+                    <li>Implemented user roles (Patients/babies, Doctors, Admin, customers) and a chat application for patient-doctor communication.</li>
+                    <li>Created and managed a database using XAAMP to store and retrieve data.</li>
+                </ul>
+            </div>
+
+            <div class="project-item card animate-slide-in-right">
+                <h3>Resort Booking Website</h3>
+                <ul>
+                    <li>Developed a resort booking website using React JS with user and admin functionalities.</li>
+                    <li>Designed the website to streamline the resort booking process.</li>
+                    <li>Implemented a database to securely store customer information, accessible only to the admin.</li>
+                </ul>
+            </div>
+
+            <div class="project-item card animate-slide-in-left">
+                <h3>To-Do List</h3>
+                <ul>
+                    <li>To-do list is developed using Android studio.</li>
+                    <li>This project has users.</li>
+                    <li>Created a database to store the list or goals added by the user and display it to the user.</li>
+                    <li>Notifications are generated to help the user achieve their goals.</li>
+                </ul>
+            </div>
+
+            <div class="project-item card animate-slide-in-right">
+                
+                <h3> <a href="https://github.com/Sherylproject/python-project" target="_blank">ping-Pong Game</a></h3>
+                <ul>
+                    <li>Ping pong game was created using python.</li>
+                </ul>
+            </div>
+
+            <div class="project-item card animate-slide-in-left">
+                <h3>Event Management</h3>
+                <ul>
+                    <li>Event management was developed using C#.</li>
+                    <li>SQL express was used for database management.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="internship" class="section">
+            <h2 class="section-title">Internship</h2>
+            <div class="internship-item card">
+                <h3>Nstore Retech Pvt Ltd</h3>
+                <p>Automation Testing & Chatbot Development Intern [24 Apr 2024] - [05 June 2024]</p>
+                <ul>
+                    <li>Automation Testing: Conducted automation testing using Selenium and the TestNG framework.</li>
+                    <li>Chatbot Development: Developed chatbot applications using Python and Vue.js.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="certifications" class="section">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certification-item card">
+                <h3>Analytics 101 (GITAA)</h3>
+                <p>September 2022 - November 2022</p>
+            </div>
+            <div class="certification-item card">
+                <h3>AWS Academy Cloud Foundations</h3>
+            </div>
+        </section>
+
+        <section id="research" class="section">
+            <h2 class="section-title">Research</h2>
+            <div class="research-item card animate-slide-in-left">
+                <h3>Predicting Cardiovascular diseases using ECG by AI</h3>
+                <ul>
+                    <li>PORST waves</li>
+                    <li>Diseases that can be predicted</li>
+                    <li>Drawbacks in previous research</li>
+                    <li>Future enhancements</li>
+                </ul>
+            </div>
+            <div class="research-item card animate-slide-in-right">
+                <h3>Android OS and its upcoming features</h3>
+                <ul>
+                    <li>Draw backs in Android OS</li>
+                    <li>Upcoming versions and features of android OS</li>
+                    <li>Updates in Android OS</li>
+                    <li>Previous versions and its difficulties</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="workshops" class="section">
+            <h2 class="section-title">Workshops</h2>
+            <div class="workshop-item card animate-fadeIn">
+                <h3>Artificial Intelligence In the Era of AI One day Workshop on Industry 5.0 with a hands-on practice</h3>
+            </div>
+            <div class="workshop-item card animate-fadeIn delay-1">
+                <h3>AWS Cloud in today's world, specifications about cloud Navigating the Digital Frontier</h3>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2 class="section-title">Contact Me</h2>
+            <p style="text-align: center; margin-bottom: 30px; font-size: 1.1em;">I'm always open to new opportunities. Feel free to reach out!</p>
+            <div style="text-align: center;">
+                <p><i class="fas fa-phone" style="color: var(--color-dark-teal); margin-right: 10px;"></i> +91 9585655808</p>
+                <p><i class="fas fa-envelope" style="color: var(--color-dark-teal); margin-right: 10px;"></i> sherylignatius21@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt" style="color: var(--color-dark-teal); margin-right: 10px;"></i> Teynampet, Chennai</p>
+                <div style="margin-top: 20px;">
+                    <a href="https://github.com/Sherylproject" target="_blank" style="color: var(--color-dark-teal); font-size: 2em; margin: 0 15px;"><i class="fab fa-github"></i></a>
+                    </div>
+            </div>
+        </section>
+
+        <section id="languages" class="section">
+            <h2 class="section-title">Languages</h2>
+            <ul>
+                <li>English (Write, Read and speak)</li>
+                <li>Tamil (Write, Read and speak)</li>
+                <li>Telugu(speak)</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Sheryl GI. All rights reserved.</p>
+            <p>Designed with <i class="fas fa-heart" style="color: #DC3545;"></i> in Chennai</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Intersection Observer for section animations
+            const sections = document.querySelectorAll('.section');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-50px 0px -50px 0px', // Trigger a bit earlier
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Animate only once
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Initial animations for elements that might be in the viewport on load
+            const animatedElements = document.querySelectorAll('.animate-fade-in-up, .animate-slide-in-left, .animate-slide-in-right, .animate-fadeIn');
+            animatedElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('is-visible');
+                }, 100 * index); // Staggered initial load
+            });
+            document.querySelector('#summary').classList.add('is-visible'); // Ensure summary is visible on load
+        });
+    </script>
+</body>
+</html>
